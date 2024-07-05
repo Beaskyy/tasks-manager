@@ -1,11 +1,14 @@
 const express = require("express");
+const {
+  getAllTasks,
+  createTask,
+  updateTask,
+  deleteTask,
+  getSingleTask,
+} = require("../controllers/tasks");
 const router = express.Router();
 
-router.route("/").get((req, res) => {
-  res.json({
-    name: "Wash the dishes",
-    completed: true,
-  });
-});
+router.route("/").get(getAllTasks).post(createTask);
+router.route("/:id").patch(updateTask).delete(deleteTask).get(getSingleTask);
 
 module.exports = router;
